@@ -13,19 +13,28 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the (RottenPotatoes )?home\s?page$/ then '/'   #/movies
+    when /^the (RottenPotatoes )?home\s?page$/ then '/movies'   #'/'
     
   
      
     
-    when /^the (.*) page for "(.*)"/i
-       movie = Movie.find_by_title($2)
-       case $1
-       when "details" then movie_path(movie.id)
-       when "edit" then edit_movie_path(movie.id)
-       when "Similar Movies" then movie_path(movie.same_director.id)
-       end 
+    # when /^the (.*) page for "(.*)"/i
+    #   movie = Movie.find_by_title($2)
+    #   case $1
+    #   when "details" then movie_path(movie.id)
+    #   when "edit" then edit_movie_path(movie.id)
+    #   when "Similar Movies" then movie_path(movie.same_director.id)
+    #   end 
     
+    when /^the edit page for (.*)/
+      # Strip the quotes from $1
+      edit_movie_path(Movie.find_by_title($1.gsub(/\A"+(.*?)"+\Z/m, '\1')))
+
+    when /^the details page for (.*)/
+      movie_path(Movie.find_by_title($1.gsub(/\A"+(.*?)"+\Z/m, '\1')))
+
+    when /^the Similar Movies page for (.*)/
+      same_director_path(Movie.find_by_title($1.gsub(/\A"+(.*?)"+\Z/m, '\1')))
    
     
 

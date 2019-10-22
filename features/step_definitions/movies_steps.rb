@@ -5,9 +5,14 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
-Then(/^the director of "([^"]*)" should be "([^"]*)"$/) do |arg1, arg2|
-  expect(Movie.find_by_title(arg1).director).to eq(arg2)
-end
+# Then(/^the director of "([^"]*)" should be "([^"]*)"$/) do |arg1, arg2|
+#   expect(Movie.find_by_title(arg1).director).to eq(arg2)
+# end
+
+Then /^the director of "([^"]*)" should be "([^"]*)"$/ do |movie, director|
+  movie = Movie.find_by_title(movie.gsub(/\A"+(.*?)"+\Z/m, '\1'))
+  expect(movie.director).to eq(director)
+end  
 
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|

@@ -1,0 +1,68 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMovies (20111119180638)
+  [1m[35m (0.1ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /home/ec2-user/environment/hw-acceptance-unit-test-cycle/db/migrate/20111119180638_create_movies.rb:10)
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying, "rating" character varying, "description" text, "release_date" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMovies (20111119180638)
+  [1m[35m (0.1ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /home/ec2-user/environment/hw-acceptance-unit-test-cycle/db/migrate/20111119180638_create_movies.rb:10)
+  [1m[36m (6.1ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying, "rating" character varying, "description" text, "release_date" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMovies (20111119180638)
+  [1m[35m (0.1ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /home/ec2-user/environment/hw-acceptance-unit-test-cycle/db/migrate/20111119180638_create_movies.rb:10)
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying, "rating" character varying, "description" text, "release_date" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (104.0ms)[0m  [1mDROP DATABASE IF EXISTS "myapp_test"[0m
+  [1m[35m (231.2ms)[0m  CREATE DATABASE "myapp_test" ENCODING = 'unicode'
+
+
+Started GET "/" for 173.219.167.170 at 2019-10-22 06:03:43 +0000
+
+
+Started GET "/movies" for 173.219.167.170 at 2019-10-22 06:03:44 +0000
+Processing by MoviesController#index as HTML
+Redirected to https://324e3971bce2481a8b94a1a8fb93705e.vfs.cloud9.us-east-2.amazonaws.com/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title
+Completed 302 Found in 43ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title" for 173.219.167.170 at 2019-10-22 06:03:44 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort"=>"title"}
+  [1m[36mMovie Load (1.7ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'PG', 'PG-13', 'R')  ORDER BY "movies"."title" ASC[0m
+  Rendered movies/index.html.haml within layouts/application (30.6ms)
+Completed 200 OK in 303ms (Views: 288.6ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=release_date" for 173.219.167.170 at 2019-10-22 06:03:46 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort"=>"release_date"}
+Redirected to https://324e3971bce2481a8b94a1a8fb93705e.vfs.cloud9.us-east-2.amazonaws.com/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=release_date
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=release_date" for 173.219.167.170 at 2019-10-22 06:03:46 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort"=>"release_date"}
+  [1m[35mMovie Load (0.6ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'PG', 'PG-13', 'R')  ORDER BY "movies"."release_date" ASC
+  Rendered movies/index.html.haml within layouts/application (4.3ms)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title" for 173.219.167.170 at 2019-10-22 06:03:49 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort"=>"title"}
+Redirected to https://324e3971bce2481a8b94a1a8fb93705e.vfs.cloud9.us-east-2.amazonaws.com/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title" for 173.219.167.170 at 2019-10-22 06:03:49 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort"=>"title"}
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'PG', 'PG-13', 'R')  ORDER BY "movies"."title" ASC[0m
+  Rendered movies/index.html.haml within layouts/application (4.0ms)
+Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.3ms)

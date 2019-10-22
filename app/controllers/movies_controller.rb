@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
   
-  #before_action :set_movie, only: [:show, :edit, :update, :destroy, :same_director]
   
   def movie_params
     #params.require(:movie).permit(:title, :rating, :description, :release_date)

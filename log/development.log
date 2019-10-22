@@ -66,3 +66,50 @@ Processing by MoviesController#index as HTML
   [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'PG', 'PG-13', 'R')  ORDER BY "movies"."title" ASC[0m
   Rendered movies/index.html.haml within layouts/application (4.0ms)
 Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMovies (20111119180638)
+  [1m[35m (0.1ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /home/ec2-user/environment/hw-acceptance-unit-test-cycle/db/migrate/20111119180638_create_movies.rb:10)
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying, "rating" character varying, "description" text, "release_date" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (104.8ms)[0m  [1mDROP DATABASE IF EXISTS "myapp_test"[0m
+  [1m[35m (224.4ms)[0m  CREATE DATABASE "myapp_test" ENCODING = 'unicode'
+
+
+Started GET "/" for 173.219.167.170 at 2019-10-22 09:40:33 +0000
+Processing by MoviesController#index as HTML
+Redirected to https://324e3971bce2481a8b94a1a8fb93705e.vfs.cloud9.us-east-2.amazonaws.com/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title
+Completed 302 Found in 25ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BNC-17%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort=title" for 173.219.167.170 at 2019-10-22 09:40:34 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "NC-17"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort"=>"title"}
+  [1m[36mMovie Load (0.7ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'NC-17', 'PG', 'PG-13', 'R')  ORDER BY "movies"."title" ASC[0m
+  Rendered movies/index.html.haml within layouts/application (16.0ms)
+Completed 200 OK in 189ms (Views: 182.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/movies/7" for 173.219.167.170 at 2019-10-22 09:40:47 +0000
+Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mMovie Load (2.8ms)[0m  SELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 7]]
+  Rendered movies/show.html.haml within layouts/application (2.6ms)
+Completed 200 OK in 15ms (Views: 9.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/movies/7/same_director" for 173.219.167.170 at 2019-10-22 09:40:54 +0000
+Processing by MoviesController#same_director as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT  "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 7]]
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.2ms)
+
+NameError (undefined local variable or method `director' for #<Movie:0x007f39ade62df8>):
+  app/models/movie.rb:7:in `same_director'
+  app/controllers/movies_controller.rb:68:in `same_director'
+
+
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.4.0/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.7ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.4.0/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.4.0/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.4.0/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (22.8ms)

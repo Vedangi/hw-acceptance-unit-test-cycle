@@ -1,12 +1,15 @@
 class MoviesController < ApplicationController
   
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :same_director]
+  
   def movie_params
-    params.require(:movie).permit(:title, :rating, :description, :release_date)
+    #params.require(:movie).permit(:title, :rating, :description, :release_date)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :director)  #add director as a parameter
   end
 
   def show
-    id = params[:id] # retrieve movie ID from URI route
-    @movie = Movie.find(id) # look up movie by unique ID
+   # id = params[:id] # retrieve movie ID from URI route
+   #  @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
 
@@ -44,7 +47,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find params[:id]
+   # @movie = Movie.find params[:id]
   end
 
   def update
@@ -61,4 +64,21 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def same_director
+    @new_movie=@movie.same_director
+    #render :show
+    if @new_movie
+      redirect_to movie_path(@new_movie)
+    else
+      flash[:notice] = " '#{@movie.title}' has no director info"
+      redirect_to root_url
+    end
+  end  
+  
+  def set_movie
+    @movie=Movie.find(params[:id])
+    
+  end
+  
+  
 end

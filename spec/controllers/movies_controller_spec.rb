@@ -39,9 +39,9 @@ RSpec.describe MoviesController, type: :controller do
             movie_1 = Movie.create(:title => "Harambe", :director => "Isaac Zhang")
             movie_2 = Movie.create(:title => "Droprambe", :director => "Isaac Zhang")
 
-            get :same_director, :id => movie_1
+            get :samedirector, :id => movie_1
 
-            expect(response).to render_template("same_director")
+            expect(response).to render_template("samedirector")
         end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe MoviesController, type: :controller do
         it 'renders index page' do
             movie_1 = Movie.create(:title => "Harambe")
 
-            get :same_director, :id => movie_1
+            get :samedirector, :id => movie_1
 
             expect(response).to redirect_to('/movies')
             expect(flash[:notice]).to eq("\'Harambe\' has no director info")

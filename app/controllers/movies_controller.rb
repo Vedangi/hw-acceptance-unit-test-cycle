@@ -75,7 +75,7 @@ class MoviesController < ApplicationController
   #   end
   # end  
   
-    def same_director
+    def samedirector
     @movie = Movie.find(params[:id])
     if @movie.director == nil || @movie.director == ""
       flash[:notice] = "\'" + @movie.title + "\' has no director info"

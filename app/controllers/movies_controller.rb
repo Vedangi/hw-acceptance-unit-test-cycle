@@ -66,17 +66,6 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  # def same_director
-  #   @new_movie=@movie.same_director
-  #   #render :show
-  #   if @new_movie
-  #     redirect_to movie_path(@new_movie)
-  #   else
-  #     flash[:notice] = " '#{@movie.title}' has no director info"
-  #     redirect_to root_url
-  #   end
-  # end  
-  
     def samedirector
     @movie = Movie.find(params[:id])
     if @movie.director == nil || @movie.director == ""    #no info about director

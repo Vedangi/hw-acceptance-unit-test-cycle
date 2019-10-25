@@ -46,7 +46,24 @@ RSpec.describe MoviesController, type: :controller do
         end
     end
     
+   
+    context 'show Movie' do
+        it 'renders show details page' do
+            movie_1 = Movie.create(:title => "Interstellar", :director => "Christopher Nolan")
+            get :show, :id => movie_1
+            expect(response).to render_template("show")
+            
+        end
+    end
     
+    context 'Delete a Movie' do
+        it 'flashes delete message' do
+            movie_1 = Movie.create(:title => "Inception", :director => "Christopher Nolan")
+            get :destroy, :id => movie_1
+            expect(response).to redirect_to(movies_path)
+            expect(flash[:notice]).to eq("Movie \'Inception\' deleted.")
+        end
+    end
     
     
     

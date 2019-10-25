@@ -76,7 +76,7 @@ class MoviesController < ApplicationController
   
     def samedirector
     @movie = Movie.find(params[:id])
-    if @movie.director == nil || @movie.director == ""
+    if @movie.director == nil || @movie.director == ""    #no info about director
       flash[:notice] = "\'" + @movie.title + "\' has no director info"
       redirect_to '/movies' and return
     end
@@ -85,11 +85,4 @@ class MoviesController < ApplicationController
       redirect_to '/movies' and return
     end
   end
-  
-  # def set_movie
-  #   @movie=Movie.find(params[:id])
-    
-  # end
-  
-  
 end

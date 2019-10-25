@@ -8,10 +8,10 @@ Background: movies in database
  
   Given the following movies exist:
   | title        | rating | director     | release_date |
-  | Star Wars    | PG     | George Lucas |   1977-05-25 |
+  | Star Wars    | PG     | George Lucas |   1977-05-25 | 
   | Blade Runner | PG     | Ridley Scott |   1982-06-25 |
   | Alien        | R      |              |   1979-05-25 |
-  | THX-1138     | R      | George Lucas |   1971-03-11 |
+  | THX-1138     | R      | George Lucas |   1971-03-11 | 
  
 Scenario: add director to existing movie
   When I go to the edit page for "Alien"
@@ -42,12 +42,10 @@ Scenario: add movie
   Then I should be on the RottenPotatoes home page
   And I should see "Joker was successfully created"
   
-Scenario: show movie
-  Given I am on the RottenPotatoes home page
-  When I follow "More About Blade Runner"
-  Then I should be on the details page for "Blade Runner"
-  And I should see "Blade Runner"
-  But I should not see "Alien"
+# Scenario: Return back from Show Similar Movie Page
+#   Given I am on the Similar Movies page for "Star Wars"
+#   When I follow "More About Star Wars"
+#   Then I should be on the details page for "Star Wars"
   
   
 Scenario: delete movie

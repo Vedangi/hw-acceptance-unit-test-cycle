@@ -1,5 +1,23 @@
 
-%tbody
+%h2 Movies made by the same Director
+%br
+%table.table-striped.col-md-10#movies
+  %thead
+    %tr
+      %th Movie
+      %th Rating
+      %th Director
+      %th Release Date
+      %th More Info
+  %tbody
     - @movies_with_same_director.each do |movie|
-        %tr
-            %td= movie 
+      %tr
+        %td= movie.title 
+        %td= movie.rating
+        %td= movie.director
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+
+%br
+= link_to 'Back to Home Page', movies_path      
+

@@ -23,4 +23,31 @@ RSpec.describe MoviesController, type: :controller do
             expect(flash[:notice]).to eq("\'Dark Knight\' has no director info")
         end
     end
+    
+    
+    context 'Movie Title on home clicked' do
+        it 'should hilite title header' do
+          get :index, { sort: 'title'}
+          expect(assigns(:title_header)).to eql('hilite')
+        end
+    end
+    
+    context 'Released Date on home clicked' do
+        it 'should hilite release date header' do
+          get :index, { sort: 'release_date'}
+          expect(assigns(:date_header)).to eql('hilite')
+        end
+    end
+    
+    context 'Director on home clicked' do
+        it 'should hilite director header' do
+          get :index, { sort: 'director'}
+          expect(assigns(:director_header)).to eql('hilite')
+        end
+    end
+    
+    
+    
+    
+    
 end

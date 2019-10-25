@@ -41,11 +41,11 @@ Scenario: add movie
   And I press "Save Changes"
   Then I should be on the RottenPotatoes home page
   And I should see "Joker was successfully created"
-  
-# Scenario: Return back from Show Similar Movie Page
-#   Given I am on the Similar Movies page for "Star Wars"
-#   When I follow "More About Star Wars"
-#   Then I should be on the details page for "Star Wars"
+
+Scenario: sort movies by director
+  Given I am on the RottenPotatoes home page
+  When I follow "Director"
+  Then I should see "George Lucas" before "Ridley Scott"
   
   
 Scenario: delete movie

@@ -10,7 +10,7 @@
       %th Release Date
       %th More Info
   %tbody
-    - @movies_with_same_director.each do |movie|
+    - @movies_made_by_same_director.each do |movie|
       %tr
         %td= movie.title 
         %td= movie.rating

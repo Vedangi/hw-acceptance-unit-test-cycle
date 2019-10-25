@@ -7,9 +7,9 @@ RSpec.describe MoviesController, type: :controller do
             movie_1 = Movie.create(:title => "Dark Knight", :director => "Christopher Nolan")
             movie_2 = Movie.create(:title => "Joker", :director => "Todd Phillips")
 
-            get :samedirector, :id => movie_1
+            get :samedirector_movies, :id => movie_1
 
-            expect(response).to render_template("samedirector")
+            expect(response).to render_template("samedirector_movies")
         end
     end
 
@@ -17,7 +17,7 @@ RSpec.describe MoviesController, type: :controller do
         it 'renders index page' do
             movie_1 = Movie.create(:title => "Dark Knight")
 
-            get :samedirector, :id => movie_1
+            get :samedirector_movies, :id => movie_1
 
             expect(response).to redirect_to('/movies')
             expect(flash[:notice]).to eq("\'Dark Knight\' has no director info")
@@ -25,21 +25,38 @@ RSpec.describe MoviesController, type: :controller do
     end
     
     
-    context 'Movie Title on home clicked' do
+    context "when home page is called" do
+        it "renders index page" do
+            get :index
+            expect(response).to render_template("index")
+        end
+    end
+    
+    context "edit movie page is called" do
+        it "renders edit page" do
+            movie_1 = Movie.create(:title => "Interstellar", :director => "Christopher Nolan")
+            get :edit, :id => movie_1
+            expect(response).to render_template("edit")
+        end
+    end
+    
+    
+    
+    context 'Movie Title on home is clicked' do
         it 'should hilite title header' do
           get :index, { sort: 'title'}
           expect(assigns(:title_header)).to eql('hilite')
         end
     end
     
-    context 'Released Date on home clicked' do
+    context 'Released Date on home is clicked' do
         it 'should hilite release date header' do
           get :index, { sort: 'release_date'}
           expect(assigns(:date_header)).to eql('hilite')
         end
     end
     
-    context 'Director on home clicked' do
+    context 'Director on home is clicked' do
         it 'should hilite director header' do
           get :index, { sort: 'director'}
           expect(assigns(:director_header)).to eql('hilite')

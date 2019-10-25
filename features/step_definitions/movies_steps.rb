@@ -5,9 +5,7 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
-# Then(/^the director of "([^"]*)" should be "([^"]*)"$/) do |arg1, arg2|
-#   expect(Movie.find_by_title(arg1).director).to eq(arg2)
-# end
+
 
 Then /^the director of "([^"]*)" should be "([^"]*)"$/ do |movie, director|
   movie = Movie.find_by_title(movie.gsub(/\A"+(.*?)"+\Z/m, '\1'))
@@ -33,8 +31,5 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
   
-# When /^the details page for "(.*)"$/ do       
-#   movie_path(Movie.find_by_title($1))
-# end
 
 end

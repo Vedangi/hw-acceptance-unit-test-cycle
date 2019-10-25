@@ -66,14 +66,14 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-    def samedirector
+    def samedirector_movies
     @movie = Movie.find(params[:id])
-    if @movie.director == nil || @movie.director == ""    #no info about director
+    if @movie.director == "" || @movie.director == nil    #no info about director(sad path)
       flash[:notice] = "\'" + @movie.title + "\' has no director info"
       redirect_to '/movies' and return
     end
-    @movies_with_same_director = @movie.movies_with_same_director
-    if @movies_with_same_director.empty?
+    @movies_made_by_same_director = @movie.movies_made_by_same_director
+    if @movies_made_by_same_director.empty?
       redirect_to '/movies' and return
     end
   end

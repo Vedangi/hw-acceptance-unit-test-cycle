@@ -14,17 +14,7 @@ module NavigationHelpers
     case page_name
 
     when /^the (RottenPotatoes )?home\s?page$/ then '/movies'   #'/'
-    
   
-     
-    
-    # when /^the (.*) page for "(.*)"/i
-    #   movie = Movie.find_by_title($2)
-    #   case $1
-    #   when "details" then movie_path(movie.id)
-    #   when "edit" then edit_movie_path(movie.id)
-    #   when "Similar Movies" then movie_path(movie.same_director.id)
-    #   end 
     
     when /^the edit page for (.*)/
       # Strip the quotes from $1
